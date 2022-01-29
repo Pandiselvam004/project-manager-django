@@ -1,0 +1,35 @@
+{% if form.errors %}
+<div class="form_errors d-none">
+    {% for field in form %}
+    {% for error in field.errors %}
+    <b>{{ error|escape }}</b><br>
+    {% endfor %}
+    {% endfor %}
+</div>
+{% endif %}
+{% if error %}
+<div class="errors d-none">
+    <b>{{ error|escape }}</b><br>
+</div>
+{% endif %}
+{% if form and form.errors %}
+<script>
+    $(document).ready(function () {
+        Swal.fire({
+            html: $('.form_errors').html(),
+            icon: "error",
+        });
+    })
+</script>
+{% endif %}
+
+{% if error %}
+<script>
+    $(document).ready(function () {
+        Swal.fire({
+            html: $('.errors').html(),
+            icon: "error",
+        });
+    })
+</script>
+{% endif %}

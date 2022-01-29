@@ -1,0 +1,78 @@
+{% load static %}
+{% load django_bootstrap_breadcrumbs %}
+<html lang="en">
+
+<head>
+    <base href="">
+    <title>Starter Kit | {{page_title}}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+        content="Craft admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
+    <meta name="keywords"
+        content="Craft, bootstrap, bootstrap 5, admin themes, free admin themes, bootstrap admin, bootstrap dashboard" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Craft - Bootstrap 5 HTML Admin Dashboard Theme" />
+    <meta property="og:url" content="https://themes.getbootstrap.com/product/craft-bootstrap-5-admin-dashboard-theme" />
+    <meta property="og:site_name" content="Keenthemes | Craft" />
+    <link rel="canonical" href="https://preview.keenthemes.com/craft" />
+    <link href="{% static '/plugins/custom/datatables/datatables.bundle.css' %}" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="{% static '/media/logos/favicon.ico' %}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700" />
+    <link href="{% static '/plugins/custom/leaflet/leaflet.bundle.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static '/plugins/global/plugins.bundle.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static '/css/style.bundle.css' %}" rel="stylesheet" type="text/css" />
+
+    {% block styles %}
+    {% endblock %}
+</head>
+
+<body id=" kt_body"
+    class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled aside-fixed aside-default-enabled">
+    <div class="d-flex flex-column flex-root">
+        <div class="page d-flex flex-row flex-column-fluid">
+            {% include 'includes/sidebar.html' %}
+            <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+                {% include 'includes/header.html' %}
+                <div class="content fs-6 d-flex flex-column flex-column-fluid" id="kt_content">
+                    {% block breadcrumbs %}
+                        {% clear_breadcrumbs %}
+                        {% breadcrumb "Home" "/webpanel" %}
+                    {% endblock %}
+                    {% render_breadcrumbs %}
+                    <div class="post fs-6 d-flex flex-column-fluid" id="kt_post">
+                        <div class="container-xxl">
+                            {% block content %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var hostUrl = "/";
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="{% static '/plugins/global/plugins.bundle.js' %}"></script>
+    <script src="{% static '/js/scripts.bundle.js' %}"></script>
+    <script src="{% static '/plugins/custom/leaflet/leaflet.bundle.js' %}"></script>
+    <script src="{% static '/js/custom/modals/create-app.js' %}"></script>
+    <script src="{% static '/js/custom/modals/select-location.js' %}"></script>
+    <script src="{% static '/js/custom/widgets.js' %}"></script>
+    <script src="{% static '/js/custom/apps/chat/chat.js' %}"></script>
+    <script src="{% static '/js/custom/modals/create-project.bundle.js' %}"></script>
+    <script src="{% static '/js/custom/modals/upgrade-plan.js' %}"></script>
+    <script src="{% static '/plugins/custom/datatables/datatables.bundle.js' %}"></script>
+    <script src="{% static '/js/custom.js' %}"></script>
+    {% include 'includes/errors_scripts.html' %}
+    {% include 'includes/datatable_scripts.html' %}
+    {% block scripts %}
+    {% endblock %}
+</body>
+
+</html>

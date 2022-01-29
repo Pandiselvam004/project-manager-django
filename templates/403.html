@@ -1,0 +1,40 @@
+{% load static %}
+<html lang="en">
+	<head><base href="../../">
+		<title>Stater Kit</title>
+		<meta charset="utf-8" />
+		<meta name="description" content="Craft admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
+		<meta name="keywords" content="Craft, bootstrap, bootstrap 5, admin themes, free admin themes, bootstrap admin, bootstrap dashboard" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="Craft - Bootstrap 5 HTML Admin Dashboard Theme" />
+		<meta property="og:url" content="https://themes.getbootstrap.com/product/craft-bootstrap-5-admin-dashboard-theme" />
+		<meta property="og:site_name" content="Keenthemes | Craft" />
+		<link rel="canonical" href="https://preview.keenthemes.com/craft" />
+		<link rel="shortcut icon" href="{% static '/media/logos/favicon.ico'%}" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700" />
+		<link href="{% static '/plugins/global/plugins.bundle.css'%}" rel="stylesheet" type="text/css" />
+		<link href="{% static '/css/style.bundle.css'%}" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="kt_body" class="auth-bg">
+		<div class="d-flex flex-column flex-root">
+			<div class="d-flex flex-column flex-column-fluid pt-10">
+				<div class="d-flex flex-column flex-center p-10 p-lg-20">
+					<a href="../dist/index.html" class="mb-15">
+						<img alt="Logo" src="{% static '/media/logos/logo-compact.svg'%}" class="h-60px" />
+					</a>
+					<div class="text-center">
+						<h1 class="fw-bolder fs-2qx text-dark mb-7">You Don't Have Access</h1>
+						<div class="fw-bold fs-2 text-gray-400 mb-15">Please contact admin</div>
+						<a href="/webpanel" class="btn btn-lg btn-primary">Go to homepage</a>
+					</div>
+				</div>
+				<div class="d-flex flex-row-auto bgi-no-repeat bgi-position-x-center bgi-size-contain bgi-position-y-bottom min-h-100px min-h-lg-350px" style="background-image: url({% static '/media/illustrations/sigma-1/17.png'%}"></div>
+			</div>
+		</div>
+		<script>var hostUrl = "/";</script>
+		<script src="{% static '/plugins/global/plugins.bundle.js'%}"></script>
+		<script src="{% static '/js/scripts.bundle.js'%}"></script>
+	</body>
+</html>

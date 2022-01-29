@@ -1,0 +1,121 @@
+{% extends "layouts/auth.html" %}
+{% load static %}
+{% load django_bootstrap_breadcrumbs %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Users" "/webpanel/users" %}
+    {% breadcrumb request.resolver_match.kwargs.id|yesno:'Edit,Create' "" %}
+{% endblock %}
+
+{% block content %}
+<div class="card mb-5 mb-xl-10" id="kt_account_settings_info" data-kt-scroll-offset="{default: 100, md: 125}">
+    <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
+        data-bs-target="#kt_account_basic_info" aria-expanded="true" aria-controls="kt_account_basic_info">
+        <div class="card-title m-0">
+            <h3 class="fw-boldest m-0">User {{ request.resolver_match.kwargs.id|yesno:"Edit,Create" }}</h3>
+        </div>
+    </div>
+    <div id="kt_account_basic_info" class="collapse show">
+        <form method="POST" action="" id="kt_account_basic_info_form"
+            class="form fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate"
+            enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.is_active }}
+            <div class="card-body border-top p-9">
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Profile Image</label>
+                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                        <div class="image-input image-input-outline" data-kt-image-input="true"
+                            style="background-image: url('{% static "media/avatars/blank.png" %}');">
+                            {% if user and user.profile_img %}
+                            <div class="image-input-wrapper w-125px h-125px"
+                                style="background-image: url('{{user.profile_img}}');"></div>
+                            {% else %}
+                            <div class="image-input-wrapper w-125px h-125px"
+                                style="background-image: url('{% static "media/avatars/blank.png" %}');"></div>
+                            {% endif %}
+                            <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
+                                <i class="bi bi-pencil-fill fs-7"></i>
+                                {{ form.profile_img }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Full Name</label>
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                                {{ form.first_name }}
+                            </div>
+                            <div class="col-lg-6 fv-row fv-plugins-icon-container">
+                                {{ form.last_name }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Username</label>
+                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                        {{ form.username }}
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Role</label>
+                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                        {{ form.groups }}
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Email</label>
+                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                        {{ form.email }}
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Password</label>
+                    <div class="col-lg-8 fv-row">
+                        {{ form.password }}
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Confirm Password</label>
+                    <div class="col-lg-8 fv-row">
+                        {{ form.confirm_password }}
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer d-flex justify-content-end py-6 px-9">
+                <a href="/webpanel/users" class="btn btn-light btn-active-light-primary me-2">Back</a>
+                <button type="submit" class="btn btn-primary" id="kt_account_basic_info_submit">Save Changes</button>
+            </div>
+            <div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block styles%}
+
+<link href="{% static '/plugins/multiselect/css/multi-select.css' %}" rel="stylesheet" type="text/css">
+{% endblock%}
+
+{% block scripts %}
+<script src="{% static '/plugins/multiselect/js/jquery.multi-select.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.multi-select').multiSelect();
+        $('#select-all').click(function () {
+            $('.multi-select').multiSelect('select_all');
+            return false;
+        });
+        $('#deselect-all').click(function () {
+            $('.multi-select').multiSelect('deselect_all');
+            return false;
+        });
+    })
+</script>
+{% endblock%}

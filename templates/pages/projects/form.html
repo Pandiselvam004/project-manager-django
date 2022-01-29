@@ -1,0 +1,87 @@
+{% extends "layouts/auth.html" %}
+{% load static %}
+{% load django_bootstrap_breadcrumbs %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {% breadcrumb "Projects" "/webpanel/projects" %}
+    {% breadcrumb request.resolver_match.kwargs.id|yesno:'Edit,Create' "" %}
+{% endblock %}
+
+{% block content %}
+<div class="card mb-5 mb-xl-10" data-kt-scroll-offset="{default: 100, md: 125}">
+    <div class="card-header border-0 cursor-pointer">
+        <div class="card-title m-0">
+            <h3 class="fw-boldest m-0">Project {{ request.resolver_match.kwargs.id|yesno:"Edit,Create" }}</h3>
+        </div>
+    </div>
+    <div id="kt_account_basic_info" class="collapse show">
+        <form method="POST" action="" id="kt_account_basic_info_form"
+            class="form fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate"
+            enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="card-body border-top p-9">
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Name</label>
+                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                        {{ form.name }}
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Technologies</label>
+                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                        {{ form.technologies }}
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Overview Document</label>
+                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                        {{ form.overview_document }}
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-bold fs-6">Cpanel Details</label>
+                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                        {{ form.cpanel_details }}
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-bold fs-6">FTP Details</label>
+                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                        {{ form.ftp_details }}
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-bold fs-6">SSH Details</label>
+                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                        {{ form.ssh_details }}
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-bold fs-6">PEM Url</label>
+                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                        {{ form.key_link_url }}
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer d-flex justify-content-end py-6 px-9">
+                <a href="/webpanel/users" class="btn btn-light btn-active-light-primary me-2">Back</a>
+                <button type="submit" class="btn btn-primary" id="kt_account_basic_info_submit">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static '/plugins/custom/ckeditor/ckeditor-classic.bundle.js' %}"></script>
+<script type="text/javascript">
+    $('.kt_docs_ckeditor_classic').each(function () {
+        ClassicEditor.create(document.querySelector('#'+$(this).prop('id')));
+    });
+
+    $('#id_technologies').select2({
+        tags: true, 
+    })
+</script>
+{% endblock %}
