@@ -13,6 +13,6 @@ urlpatterns = [
     path('/', views.index, name='view_projects'),
     path('/api', include(router.urls)),
     path('/create', views.create, name='add_projects'),
-    path('/<int:id>', views.edit, name='change_user'),
-    path('/delete/<int:id>', views.delete, name='delete_user'),
+    path('/<int:id>', views.edit, name='change_projects'),
+    path('/delete/<int:id>', views.delete, name='delete_projects'),
 ]
