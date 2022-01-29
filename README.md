@@ -1,7 +1,17 @@
-# django-starter-kit
-Django Starter Kit with Backend Modules
+# Project Manager 
 
-Django Setup 
+#Project Overview
+
+* Admin Theme integeration
+* User Registeration and Login
+* User Management 
+* Roles and Permission Management
+* Projects Management
+* Projects details were encrypted in DB for security reason
+* Dynamic Page titles using custom template view context processors
+* Breadcrumbs
+
+Project Setup 
 
 * git clone repo
 * python3 -m venv venv 
